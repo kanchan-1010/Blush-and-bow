@@ -1449,6 +1449,134 @@
           display: none;
         }
       }
+
+      /* ACCESSIBILITY & ALL-AGES USER-FRIENDLY CONTROLS */
+      .btn-easy-read {
+        border: 1px solid var(--border-rose);
+        background: #ffffff;
+        color: var(--wine-primary);
+        font-weight: 700;
+        font-size: 0.8rem;
+        padding: 6px 12px;
+        border-radius: var(--radius-full);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+      }
+      .btn-easy-read:hover {
+        background: var(--blush-pale);
+        border-color: var(--wine-light);
+      }
+      .senior-helper-bar {
+        background: #fff8f0;
+        border-bottom: 1px solid #f2e3d5;
+        color: #7c4424;
+        font-size: 0.82rem;
+        padding: 8px 16px;
+        text-align: center;
+        font-weight: 500;
+      }
+      .senior-helper-bar strong {
+        color: #5c2c10;
+      }
+      .senior-helper-bar a {
+        color: #15803d;
+        font-weight: 700;
+        text-decoration: underline;
+      }
+
+      /* LARGE TEXT MODE (SENIOR & EASY-READ) */
+      body.large-text-mode {
+        font-size: 18px !important;
+      }
+      body.large-text-mode .product-name {
+        font-size: 1.25rem !important;
+        line-height: 1.4 !important;
+      }
+      body.large-text-mode .price-current {
+        font-size: 1.45rem !important;
+      }
+      body.large-text-mode .btn-add,
+      body.large-text-mode .btn-wa-card,
+      body.large-text-mode .btn-checkout-cta {
+        font-size: 1.05rem !important;
+        padding: 12px 18px !important;
+      }
+      body.large-text-mode .catalog-filter-pill,
+      body.large-text-mode .nav-tab {
+        font-size: 1.05rem !important;
+        padding: 10px 18px !important;
+      }
+      body.large-text-mode .quick-view-btn {
+        font-size: 0.95rem !important;
+      }
+
+      /* WHATSAPP CARD & CART BUTTONS */
+      .btn-wa-card {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        background: #25D366;
+        color: #ffffff !important;
+        border: none;
+        border-radius: var(--radius-full);
+        font-size: 0.8rem;
+        font-weight: 700;
+        padding: 7px 12px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 8px;
+        width: 100%;
+      }
+      .btn-wa-card:hover {
+        background: #1eb956;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.25);
+      }
+      .btn-wa-direct {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #25D366;
+        color: #ffffff !important;
+        border-radius: var(--radius-full);
+        font-size: 0.95rem;
+        font-weight: 700;
+        padding: 12px 20px;
+        text-decoration: none;
+        cursor: pointer;
+        flex: 1;
+        min-width: 180px;
+        transition: all 0.2s ease;
+      }
+      .btn-wa-direct:hover {
+        background: #1eb956;
+      }
+      .btn-wa-cart-order {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        background: #25D366;
+        color: #ffffff;
+        border: none;
+        border-radius: 12px;
+        font-size: 0.92rem;
+        font-weight: 700;
+        padding: 12px 16px;
+        cursor: pointer;
+        margin-top: 8px;
+        transition: background 0.2s ease;
+      }
+      .btn-wa-cart-order:hover {
+        background: #1eb956;
+      }
     </style>
   </head>
   <body>
@@ -1507,7 +1635,15 @@
           </button>
         </nav>
 
-        <div style="display: flex; align-items: center; gap: 12px">
+        <div style="display: flex; align-items: center; gap: 10px">
+          <button
+            id="fontSizeToggle"
+            class="btn-easy-read"
+            onclick="toggleFontSize()"
+            title="Toggle larger text for easy reading"
+          >
+            Aa Large Text
+          </button>
           <button
             class="menu-button"
             onclick="toggleSidebar()"
@@ -1536,6 +1672,10 @@
         </div>
       </div>
     </header>
+
+    <div class="senior-helper-bar">
+      <span>💡 <strong>Easy Ordering for All:</strong> Need help or prefer WhatsApp? <a href="https://wa.me/919876543210?text=Hi%20Blush%20%26%20Bow!%20Please%20help%20me%20place%20an%20order." target="_blank">Chat with our Pune team at +91 98765 43210</a> — we'll place the order for you! (आर्डर करने में मदद चाहिए? WhatsApp करें)</span>
+    </div>
 
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()">
       <aside class="sidebar-panel" onclick="event.stopPropagation()">
@@ -2101,6 +2241,9 @@
           <button class="btn-checkout-cta" onclick="openCheckout()">
             Proceed to Checkout ✨
           </button>
+          <button class="btn-wa-cart-order" type="button" onclick="orderCartOnWhatsApp()">
+            📲 Quick Order Bag on WhatsApp (No Form)
+          </button>
         </div>
       </div>
     </div>
@@ -2149,15 +2292,19 @@
             Complete your Blush & Bow purchase
           </p>
           <form onsubmit="handleOrderSubmit(event)">
+            <div style="background: #eef9f2; border: 1px solid #bbf0cb; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.85rem; color: #166534; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+              <span>📱 <strong>Prefer WhatsApp?</strong> Order without filling any forms!</span>
+              <button type="button" onclick="orderCartOnWhatsApp(); closeModal('checkoutModal');" style="background: #25D366; color: #fff; border: none; padding: 6px 12px; border-radius: 999px; font-weight: 700; font-size: 0.78rem; cursor: pointer;">Send Order on WhatsApp</button>
+            </div>
             <div style="margin-bottom: 12px">
               <label
                 style="
                   display: block;
-                  font-size: 0.8rem;
+                  font-size: 0.82rem;
                   font-weight: 700;
                   margin-bottom: 4px;
                 "
-                >Full Name</label
+                >Full Name / आपका नाम</label
               >
               <input
                 type="text"
@@ -2184,34 +2331,11 @@
                 <label
                   style="
                     display: block;
-                    font-size: 0.8rem;
+                    font-size: 0.82rem;
                     font-weight: 700;
                     margin-bottom: 4px;
                   "
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  name="customer_email"
-                  required
-                  placeholder="radhika@example.com"
-                  style="
-                    width: 100%;
-                    padding: 10px;
-                    border: 1px solid var(--border-rose);
-                    border-radius: 8px;
-                  "
-                />
-              </div>
-              <div>
-                <label
-                  style="
-                    display: block;
-                    font-size: 0.8rem;
-                    font-weight: 700;
-                    margin-bottom: 4px;
-                  "
-                  >Phone Number</label
+                  >Mobile / WhatsApp Number</label
                 >
                 <input
                   type="tel"
@@ -2226,22 +2350,44 @@
                   "
                 />
               </div>
+              <div>
+                <label
+                  style="
+                    display: block;
+                    font-size: 0.82rem;
+                    font-weight: 700;
+                    margin-bottom: 4px;
+                  "
+                  >Email (Optional / वैकल्पिक)</label
+                >
+                <input
+                  type="email"
+                  name="customer_email"
+                  placeholder="radhika@example.com"
+                  style="
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid var(--border-rose);
+                    border-radius: 8px;
+                  "
+                />
+              </div>
             </div>
             <div style="margin-bottom: 12px">
               <label
                 style="
                   display: block;
-                  font-size: 0.8rem;
+                  font-size: 0.82rem;
                   font-weight: 700;
                   margin-bottom: 4px;
                 "
-                >Delivery Address</label
+                >Delivery Address / घर का पता</label
               >
               <input
                 type="text"
                 name="shipping_address"
                 required
-                placeholder="House / Flat No, Street, Area"
+                placeholder="House / Flat No, Building, Street, Area"
                 style="
                   width: 100%;
                   padding: 10px;
@@ -2257,7 +2403,7 @@
                   type="text"
                   name="city"
                   required
-                  placeholder="City (e.g. Pune)"
+                  placeholder="City / शहर (e.g. Pune)"
                   style="
                     width: 100%;
                     padding: 10px;
@@ -2269,7 +2415,7 @@
                   type="text"
                   name="pincode"
                   required
-                  placeholder="Pincode (e.g. 411045)"
+                  placeholder="Pincode / पिन कोड (e.g. 411045)"
                   style="
                     width: 100%;
                     padding: 10px;
@@ -2697,6 +2843,9 @@
               </div>
               <button class="btn-add" onclick="addToCart(${p.id})">+ Add</button>
             </div>
+            <a href="https://wa.me/919876543210?text=Hi%20Blush%20%26%20Bow!%20I%20want%20to%20order:%20${encodeURIComponent(p.title)}%20(Price:%20₹${p.price}).%20Please%20help%20me%20confirm." target="_blank" class="btn-wa-card" title="1-Click WhatsApp Order">
+              📲 Order on WhatsApp
+            </a>
           </div>
         </div>
       `,
@@ -3008,9 +3157,14 @@
             <div style="background: var(--blush-pale); padding: 10px 14px; border-radius: 8px; font-size: 0.8rem; color: var(--text-dark); margin-bottom: 20px;">
               ${p.details}
             </div>
-            <button class="btn-checkout-cta" style="margin: 0;" onclick="addToCart(${p.id}); closeModal('quickModal');">
-              Add to Shopping Bag 🛍️
-            </button>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn-checkout-cta" style="flex: 1; min-width: 150px; margin: 0;" onclick="addToCart(${p.id}); closeModal('quickModal');">
+                Add to Bag 🛍️
+              </button>
+              <a href="https://wa.me/919876543210?text=Hi%20Blush%20%26%20Bow!%20I%20want%20to%20order:%20${encodeURIComponent(p.title)}%20(Price:%20₹${p.price}).%20Please%20help%20me%20confirm." target="_blank" class="btn-wa-direct" onclick="closeModal('quickModal');">
+                📲 Order on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       `;
@@ -3257,6 +3411,28 @@
         </div>
         <img class="poster-artwork-hero" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAJmBQADASIAAhEBAxEB/8QAHQAAAgEFAQEAAAAAAAAAAAAAAAEGAgMEBQcICf/EAFwQAAEDAwIDBQMGCQYLBQYFBQEAAgMEBREGIRIxQQcTUWFxIoGRCBQyQqGxFSNSYnKCksHRFjOys+HwJDdDU1Zjc3R1osIlJzQ1kxc2RGRl8SZGVIOUo9JVRcP/xAAbAQACAwEBAQAAAAAAAAAAAAAAAQIDBAUGB//EAD8RAAIBAgQCCAUCBgEEAgIDAAABAgMRBBIhMUFRBRMyYXGBkdEiobHB8BThBiMzNEJT8RUkQ1JykmLSFoLC/9oADAMBAAIRAxEAPwCf5xsmCqeSCVy2IHpBB5oCQDwkqs7KlAASlnon0VJ8khlfNMEYVOeudkZHigRVz6pbFUFyAfAoAuA5TJVoOVQccJDAEh226q485A2VIGdzsq+EBnLZMCloJcrrdhzTYABkBDsHmMIAcbtvNPOeZVlzTzB280w45I5oAvKl3Iq3xElHGepQBWNvRPPJUZP/ANkbgZQBcz5p52wrYJ5J8SBFeUwVQw58wnuEDMmI+yFdDhhYbHEOwqxJg7pgZWR4pFWw5NxQAEql3JBKpLggChxwcKhxVTt1SRnphIBNO3NBCfJGcdEwF1R18EwSUnYB3QA84O59yoeSclUucScBLrz3KQDaMKvokGoPLlhAFDjgrcaWpDX3yipANnyAv8mjc/YFpng4Pgp52RW57pqu7Sj2WD5vD6ndx+4fFThG8gR0XPkhCFrLRoQkgATB80itfqO5G02eetjh7+doDaeAHBmmceGNnvcR6DJ6JNqKu9hpNuyI7WtGptesg4uK3WDeTwfVPAPD+ozh97z4KY5PPmVo9E2Y2SwxU00onqpHOmqp8fzszyXSP97iceWFvPNZsNTtmqPeWvsvQtrTvaK2X4wQhHRaikaEk0ACN0boTAAhHRHNAAkhCAD3ppJoAEIQgAQkhIBoSQEAVIOEIQAIQhACIQmkmAIKEFABhCCUBAAgoQgAQUIQAdEISSAeUkJ9EAGUISQA0JIQAIQhAAhCEACEIQAIyhJAGDqKz0N+stTablH3lNUM4XAc2nmHNPQg7grnmhbnc9M3k6E1NKX93vaq130ZoicBhP2DwOW/k56ktNq2wUuoLb83mDWTx5dTzFuTG797TyI/eAVjxNGTaq0u2vmuT+z4M1YetGN4T7L+T5r780ZbVX9qi2mb1Ux1ZsN9BhuMWGxvcciYdN+pPR31vJwIUoVuHrwrwzR81xT5PvLKlNwdn/yNLGEIIy3ZXlYs7oKpa4gkEIc7bzSJWB3h9qx5PpdMhXXHyVt4Dhkc/FJk46FDSTvhPO2VQcjcbHPJVA5BHXKRY0H2Ky76XRXxsqCNztsUiUWWHnfZIc+aqfu7lySx1ISLUA35DdBCWU85HNAFPvScRy6pgfekeZzhIkIeuyR5oB9UHxwgkCPJIH4o29EAVt5dFUVRy6q5FvseiZB8yppTJICG8yOSMfBBAtkb5xskdtlcAGc4KpcOiCSZRg9Ak3PVVEncbqkH2cHbCRIYyVU0pcxtsg7HogRcHNJ2SkDyKZdjcJkbFDs53GybXAJHl5KjcHfmkTtcuk78ykSqQ7zQXbc0CsMqh3JVHcZVJ5IGikpcycplLHVImMpt81Sd0x5oBlSuRZGSSrTTyVbH78Jz7vFNEJLQvdMblAO2MHdW2PLjw7kHr4K83" />
       `;
+      }
+
+      function toggleFontSize() {
+        const isLarge = document.body.classList.toggle("large-text-mode");
+        const btn = document.getElementById("fontSizeToggle");
+        if (btn) {
+          btn.textContent = isLarge ? "Aa Standard Text" : "Aa Large Text";
+        }
+        showToast(isLarge ? "Large text mode enabled 🔍" : "Standard text mode enabled");
+      }
+
+      function orderCartOnWhatsApp() {
+        if (!cart || cart.length === 0) {
+          showToast("Your bag is empty! Add products first 🛍️");
+          return;
+        }
+        const itemsText = cart
+          .map((i) => `• ${i.title} (Qty: ${i.qty}) - ₹${i.price * i.qty}`)
+          .join("%0A");
+        const total = document.getElementById("totalVal") ? document.getElementById("totalVal").textContent : "";
+        const msg = `Hi Blush %26 Bow! 🎀%0A%0AI want to order these items from my bag:%0A${itemsText}%0A%0AEstimated Total: ${total}%0A%0APlease help me place and confirm this order. Thank you!`;
+        window.open(`https://wa.me/919876543210?text=${msg}`, "_blank");
       }
 
       setBoutiqueHeroDefault();
