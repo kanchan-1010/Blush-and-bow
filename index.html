@@ -1337,14 +1337,125 @@
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
         background: #ffffff;
       }
+
+      /* UNBOXING EXPERIENCE & TRUST BANNER */
+      .unboxing-trust-banner {
+        margin: 32px 0 40px;
+      }
+      .unboxing-card {
+        background: linear-gradient(135deg, #ffffff 0%, #fff7f5 100%);
+        border: 1px solid var(--border-rose);
+        border-radius: var(--radius-lg);
+        padding: 36px 30px;
+        box-shadow: var(--shadow-subtle);
+      }
+      .unboxing-header {
+        text-align: center;
+        max-width: 650px;
+        margin: 0 auto 28px;
+      }
+      .unboxing-badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        padding: 4px 14px;
+        border-radius: var(--radius-full);
+        background: var(--blush-pink);
+        color: var(--wine-primary);
+        margin-bottom: 12px;
+      }
+      .unboxing-header h3 {
+        font-size: 1.8rem;
+        color: var(--wine-primary);
+        margin-bottom: 8px;
+      }
+      .unboxing-header p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+      .unboxing-perks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+      }
+      .perk-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        background: #ffffff;
+        padding: 18px 20px;
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(238, 219, 214, 0.6);
+        transition: transform 0.2s ease;
+      }
+      .perk-item:hover {
+        transform: translateY(-2px);
+      }
+      .perk-icon {
+        font-size: 1.7rem;
+        line-height: 1;
+      }
+      .perk-item strong {
+        display: block;
+        color: var(--text-dark);
+        font-size: 0.92rem;
+        margin-bottom: 3px;
+      }
+      .perk-item p {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
+
+      /* FLOATING WHATSAPP BUTTON */
+      .floating-whatsapp-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .floating-whatsapp-btn:hover {
+        transform: scale(1.05);
+      }
+      .wa-icon-circle {
+        width: 56px;
+        height: 56px;
+        background: #25D366;
+        color: #ffffff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
+      }
+      .wa-tooltip {
+        background: #2b2426;
+        color: #ffffff;
+        font-size: 0.82rem;
+        font-weight: 600;
+        padding: 8px 14px;
+        border-radius: 999px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        white-space: nowrap;
+      }
+      @media (max-width: 768px) {
+        .wa-tooltip {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="announcement-bar">
       <span class="badge-promo">OFFICIAL STORE LAUNCH</span>
       <span
-        >Use code <strong>PRETTY10</strong> for 10% off • Free Pan-India
-        shipping on orders over ₹799!</span
+        >Use code <strong>PRETTY10</strong> for 10% off • 🚚 <strong>FREE Pan-India Shipping</strong> on orders above ₹499! • 📦 <strong>Cash on Delivery (COD) & Instant UPI</strong> Available 🇮🇳</span
       >
     </div>
 
@@ -1659,15 +1770,56 @@
         <div class="feature-card">
           <div class="feature-icon">🚚</div>
           <div class="feature-text">
-            <h4>Fast Pan-India Delivery</h4>
-            <p>Free tracked courier on orders above ₹799</p>
+            <h4>Free Shipping > ₹499</h4>
+            <p>Pan-India tracked express courier • COD available</p>
           </div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">✨</div>
+          <div class="feature-icon">📍</div>
           <div class="feature-text">
-            <h4>Direct From Studio</h4>
-            <p>Dispatched with love from Pune, Maharashtra</p>
+            <h4>Pune Studio Direct</h4>
+            <p>Dispatched with love from Pune • Same-day local delivery</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Unboxing Experience & Trust Guarantee Banner -->
+      <section class="unboxing-trust-banner">
+        <div class="unboxing-card">
+          <div class="unboxing-header">
+            <span class="unboxing-badge">🎁 AESTHETIC UNBOXING GUARANTEE</span>
+            <h3>Every Order is Packed Like a Personal Gift ✨</h3>
+            <p>Opening your package should feel magical. Whether treating yourself or sending a gift, every order includes:</p>
+          </div>
+          <div class="unboxing-perks-grid">
+            <div class="perk-item">
+              <span class="perk-icon">📦</span>
+              <div>
+                <strong>Pastel Keepsake Box</strong>
+                <p>Signature pink studio box tied with blush satin ribbon</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">💌</span>
+              <div>
+                <strong>Handwritten Note</strong>
+                <p>Personalized calligraphy card with your custom message</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">🌸</span>
+              <div>
+                <strong>Free Aesthetic Sticker Sheet</strong>
+                <p>Complimentary floral sticker pack in every box</p>
+              </div>
+            </div>
+            <div class="perk-item">
+              <span class="perk-icon">🛡️</span>
+              <div>
+                <strong>100% Safe Payments</strong>
+                <p>Instant UPI (GPay/PhonePe/Paytm/QR) & COD available</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1908,7 +2060,7 @@
 
         <div class="shipping-bar-box">
           <div id="shippingMeterText">
-            Add ₹799 for FREE Pan-India Shipping!
+            Add ₹499 for FREE Pan-India Shipping!
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="shippingMeterFill"></div>
@@ -2193,8 +2345,11 @@
                   "
                 >
                   <input type="radio" name="payment_method" value="cod" />
-                  <span>Cash on Delivery (+₹40)</span>
+                  <span><strong>Cash on Delivery (COD)</strong> (Pay at doorstep)</span>
                 </label>
+                <div style="font-size: 0.78rem; color: var(--text-muted); background: #fdfaf8; border: 1px dashed var(--border-rose); border-radius: 8px; padding: 10px; margin-top: 8px; line-height: 1.4;">
+                  🛡️ <strong>Buyer Trust Guarantee:</strong> 100% Secure Checkout • Packed in luxury gift box • Real-time tracking link sent to your SMS & WhatsApp upon dispatch from Pune studio.
+                </div>
               </div>
             </div>
             <div
@@ -2718,7 +2873,7 @@
           document.getElementById("totalVal").textContent = "₹0";
           document.getElementById("shippingMeterFill").style.width = "0%";
           document.getElementById("shippingMeterText").textContent =
-            "Add ₹799 for FREE Pan-India Shipping!";
+            "Add ₹499 for FREE Pan-India Shipping!";
           document.getElementById("discRow").style.display = "none";
           return;
         }
@@ -2751,7 +2906,7 @@
         const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
         document.getElementById("subtotalVal").textContent = `₹${subtotal}`;
 
-        const threshold = 799;
+        const threshold = 499;
         const fillPct = Math.min(100, Math.round((subtotal / threshold) * 100));
         document.getElementById("shippingMeterFill").style.width =
           `${fillPct}%`;
@@ -3110,5 +3265,21 @@
       document.getElementById("sidebarUserStatus").textContent =
         userSession.loggedIn ? userSession.name : "Guest";
     </script>
+
+    <!-- Floating WhatsApp Studio Support -->
+    <a
+      href="https://wa.me/919876543210?text=Hi%20Blush%20%26%20Bow!%20I%20have%20a%20question%20about%20ordering%20from%20your%20boutique%20%E2%9C%A8"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-whatsapp-btn"
+      title="Chat on WhatsApp with Pune Studio"
+    >
+      <span class="wa-tooltip">Ask about delivery & orders 🎀</span>
+      <div class="wa-icon-circle">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.043.073.043.419-.101.824z"/>
+        </svg>
+      </div>
+    </a>
   </body>
 </html>

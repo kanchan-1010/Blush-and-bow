@@ -36,6 +36,10 @@ app.mount("/blush_and_bow_images", StaticFiles(directory=IMAGE_DIR), name="blush
 
 @app.get("/", response_class=HTMLResponse)
 def serve_storefront():
+    root_index = os.path.join(os.path.dirname(__file__), "index.html")
+    if os.path.exists(root_index):
+        with open(root_index, "r", encoding="utf-8") as f:
+            return f.read()
     index_file = os.path.join(STATIC_DIR, "index.html")
     if os.path.exists(index_file):
         with open(index_file, "r", encoding="utf-8") as f:
